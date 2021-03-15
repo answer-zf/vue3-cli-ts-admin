@@ -4,6 +4,9 @@
       <el-form-item label="用户名" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
+      <el-form-item label="客户端ID" prop="clientId">
+        <el-input v-model="form.clientId" />
+      </el-form-item>
       <el-form-item label="密码" prop="pwd">
         <el-input v-model="form.pwd" type="password" autocomplete="off" />
       </el-form-item>
@@ -34,13 +37,14 @@ const formRender = () => {
   const form = reactive({
     name: 'admin',
     pwd: '111111',
+    clientId: 'admin',
   })
   const ruleForm = ref(null)
 
   const onSubmit = async () => {
-    const { name, pwd } = form
+    const { name, pwd, clientId } = form
     if (!(await validate(ruleForm))) return
-    await store.dispatch('layout/login', { username: name, password: pwd })
+    await store.dispatch('layout/login', { username: name, clientId, password: pwd })
     ElNotification({
       title: '欢迎',
       message: '欢迎回来',

@@ -164,8 +164,11 @@ const mutations = {
 }
 const actions = {
   async login(context: ActionContext<ILayout, IState>, param: any): Promise<void> {
-    const paramsQs = `username=${param.username}&password=${param.password}`
-    const { data } = await login(paramsQs)
+    const formData = new FormData()
+    formData.append('username', `${param.clientId}:${param.username}`)
+    formData.append('password', param.password)
+    formData.append('grant_type', 'password')
+    const { data } = await login(formData)
     console.log(data)
     const token = data.data.sessionId
     context.commit('login', token)

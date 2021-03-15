@@ -4,7 +4,7 @@ import { store } from '@/store/index'
 import { IMenubarList } from '@/type/store/layout'
 
 const api = {
-  login: '/authority/shiroLogin',
+  login: '/oauth/token',
   getUser: '/getUser',
   getRouterList: '/getRoute',
 }
@@ -16,6 +16,10 @@ const api = {
 
 export function login(param: any): Promise<AxiosResponse<IResponse<any>>> {
   return request({
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: 'Basic YWRtaW46MTIzNDU2',
+    },
     url: api.login,
     method: 'post',
     data: param,
