@@ -1,11 +1,12 @@
 <template>
-  <router-view />
+  <h1>this is a Merchant list</h1>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'MerchantList',
+  // setup() {},
 })
 </script>

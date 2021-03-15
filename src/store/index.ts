@@ -1,12 +1,12 @@
-import { createStore } from 'vuex'
+import { createStore, Store, useStore as baseUseStore } from 'vuex'
+import layout from '@/store/module/layout'
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export const store = createStore<IState>({
   modules: {
-  }
+    layout,
+  },
 })
+
+export function useStore(): Store<IState> {
+  return baseUseStore()
+}
