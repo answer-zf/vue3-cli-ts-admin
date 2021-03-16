@@ -14,6 +14,7 @@
         'absolute z-30': layout.menubar.status === 2 || layout.menubar.status === 3,
       }"
     >
+      <!-- 侧边栏 logo 修改 -->
       <div class="layout-sidebar-logo flex h-12 relative flex-center shadow-lg">
         {{
           layout.menubar.status === 0 || layout.menubar.status === 2
