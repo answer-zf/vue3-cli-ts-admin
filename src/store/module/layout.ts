@@ -162,6 +162,7 @@ const mutations = {
     }
   },
 }
+// 使用 formData 方式传参
 const actions = {
   async login(context: ActionContext<ILayout, IState>, param: any): Promise<void> {
     const formData = new FormData()
@@ -169,10 +170,10 @@ const actions = {
     formData.append('password', param.password)
     formData.append('grant_type', 'password')
     const { data } = await login(formData)
-    console.log(data)
-    const token = data.data.sessionId
+    const token = data.access_token
     context.commit('login', token)
   },
+  // 获取 用户权限
   async getUser(context: ActionContext<ILayout, IState>): Promise<void> {
     // const res = await getUser()
     // const userInfo = res.data.Data
@@ -184,6 +185,7 @@ const actions = {
       role: ['admin'],
     })
   },
+  // 获取 路由
   async GenerateRoutes(): Promise<void> {
     // const res = await getRouterList()
     // const { Data } = res.data

@@ -14,7 +14,7 @@ const api = {
 //   password: string
 // }
 
-export function login(param: any): Promise<AxiosResponse<IResponse<any>>> {
+export function login(param: any): Promise<AxiosResponse<any>> {
   return request({
     headers: {
       'Content-Type': 'multipart/form-data',

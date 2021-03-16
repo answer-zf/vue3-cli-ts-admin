@@ -19,7 +19,7 @@
           layout.menubar.status === 0 || layout.menubar.status === 2
             ? 'IM后台管理'
             : layout.menubar.status === 1
-            ? 'IM后台管理'
+            ? 'IM'
             : ''
         }}
       </div>
