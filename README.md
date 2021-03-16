@@ -27,3 +27,5 @@
    3. 在对应的配置目录中添加文件目录
 
 ps. 未做动态处理，使用静态数据可以清除框架结构，本项目只是项目框架基地，自定义改造的部分还需要自行处理
+
+借鉴： `https://github.com/hsiangleev/element-plus-admin`
