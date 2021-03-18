@@ -21,5 +21,7 @@ module.exports = {
     '@typescript-eslint/class-name-casing': 0,
     'import/no-duplicates': 0,
     '@typescript-eslint/no-use-before-define': 0,
+    indent: ['off', 2],
+    'dot-notation': 0, // 对象 允许使用 []
   },
 }

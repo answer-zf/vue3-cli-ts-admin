@@ -2,14 +2,43 @@ import { IMenubarList } from '@/type/store/layout'
 import { listToTree } from '@/utils/index'
 import { store } from '@/store/index'
 
+const modules = require.context('@/views', true, /\.vue$/)
+
+const componentsIngore: Array<string> = ['Login', 'Workplace'] // 忽略的页面
+
 const components: IObject<() => Promise<typeof import('*.vue')>> = {
   Layout: ((() => import('@/layout/index.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
-  404: ((() => import('@/views/ErrorPage/404.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
-  Workplace: ((() => import('@/views/Dashboard/Workplace.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
-  MerchantList: ((() => import('@/views/Merchant/MerchantList.vue')) as unknown) as () => Promise<
-    typeof import('*.vue')
-  >,
 }
+
+modules.keys().forEach(key => {
+  const nameMatch = key.match(/^\.\/(.*)\/(.*)\.vue/)
+  if (!nameMatch) return
+  let [, , moduleKey] = nameMatch
+  const moduleUrl = key.replace(/^.\//, 'views/')
+
+  // 如果页面以Index命名，则使用父文件夹作为name
+  if (nameMatch[2] === 'index') {
+    const nameSplit = nameMatch[1].split('/')
+    moduleKey = nameSplit[nameSplit.length - 1]
+  }
+
+  if (!componentsIngore.includes(moduleKey)) {
+    // // 文件地址
+    // console.log(moduleUrl)
+    // // 组件名
+    // console.log(moduleKey)
+
+    // import 不能动态识别传入的字符串，需要通过指定编译路径，在根据字符串找到该组件
+    components[moduleKey] = ((() => import(`@/${moduleUrl}`)) as unknown) as () => Promise<typeof import('*.vue')>
+  }
+
+  // // 文件地址
+  // console.log(moduleUrl)
+  // // 组件名
+  // console.log(moduleKey)
+})
+
+// console.log(components)
 
 const asyncRouter: Array<IMenubarList> = [
   {
