@@ -13,9 +13,9 @@ import { setLocal, useLocal, getLocal } from '@/utils/index'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
 const setting = getLocal<ISetting>('setting')
-const token = getLocal<IToken>('token')
+const token = getLocal<IToken>('token_zfPro723673')
 // 前端检查token是否失效
-useLocal('token')
+useLocal('token_zfPro723673')
   .then(d => (token.ACCESS_TOKEN = d.ACCESS_TOKEN))
   .catch(() => mutations.logout(state))
 
@@ -120,13 +120,13 @@ const mutations = {
   },
   login(state: ILayout, token = ''): void {
     state.token.ACCESS_TOKEN = token
-    setLocal('token', state.token, 1000 * 60 * 60)
+    setLocal('token_zfPro723673', state.token, 1000 * 60 * 60)
     const { query } = router.currentRoute.value
     router.push(typeof query.from === 'string' ? decodeURIComponent(decodeURIComponent(query.from)) : '/')
   },
   logout(state: ILayout): void {
     state.token.ACCESS_TOKEN = ''
-    localStorage.removeItem('token')
+    localStorage.removeItem('token_zfPro723673')
     history.go(0)
   },
   setRoutes(state: ILayout, data: Array<IMenubarList>): void {
