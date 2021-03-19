@@ -2,22 +2,17 @@
 import { routeData } from '@/api/mockData/route'
 
 import { login } from '@/api/layout/index'
-// import { login, loginParam, getRouterList, getUser } from '@/api/layout/index'
 import { ILayout, IMenubarStatus, ITagsList, IMenubarList, ISetting, IToken } from '@/type/store/layout'
 import { ActionContext } from 'vuex'
 import router from '@/router/index'
 import { allowRouter } from '@/router/index'
 import { generatorDynamicRouter } from '@/router/asyncRouter'
 import changeTheme from '@/utils/changeTheme'
-import { setLocal, useLocal, getLocal } from '@/utils/index'
+import { setLocal, getLocal } from '@/utils/index'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
 const setting = getLocal<ISetting>('setting')
-const token = getLocal<IToken>('token_zfPro723673')
-// 前端检查token是否失效
-useLocal('token_zfPro723673')
-  .then(d => (token.ACCESS_TOKEN = d.ACCESS_TOKEN))
-  .catch(() => mutations.logout(state))
+const token = getLocal<IToken>('token')
 
 const state: ILayout = {
   menubar: {
@@ -120,13 +115,13 @@ const mutations = {
   },
   login(state: ILayout, token = ''): void {
     state.token.ACCESS_TOKEN = token
-    setLocal('token_zfPro723673', state.token, 1000 * 60 * 60)
+    setLocal('token', state.token)
     const { query } = router.currentRoute.value
     router.push(typeof query.from === 'string' ? decodeURIComponent(decodeURIComponent(query.from)) : '/')
   },
   logout(state: ILayout): void {
     state.token.ACCESS_TOKEN = ''
-    localStorage.removeItem('token_zfPro723673')
+    localStorage.removeItem('token')
     history.go(0)
   },
   setRoutes(state: ILayout, data: Array<IMenubarList>): void {

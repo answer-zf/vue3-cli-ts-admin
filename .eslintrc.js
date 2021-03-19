@@ -23,5 +23,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 0,
     indent: ['off', 2],
     'dot-notation': 0, // 对象 允许使用 []
+    'no-useless-escape': 0,
+    'prefer-promise-reject-errors': 0,
   },
 }

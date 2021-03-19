@@ -14,7 +14,7 @@
 2. `.env` 中 配置 后台接口 根路由
 3. `src\store\module\layout.ts` 中的 actions 的操作是实际请求处理操作
 4. `src\utils\request.ts` 可以修改 headers 的 token 命名以及错误请求的统一处理（项目中未处理，需要与后端约定）
-5. localStorage 存储 token 的键： 'token_zfPro723673' 做自定义命名，不要命名 'token'，以免与其他项目冲突
+5. localStorage 存储 token 的键：必须以对象的形式传递，否则不能做登录保持
 
 ## 页面框架修改
 
