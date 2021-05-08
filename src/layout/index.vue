@@ -30,13 +30,13 @@
     </div>
     <div class="layout-main flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
       <div
-        class="layout-main-navbar flex justify-between items-center h-12 shadow-sm border-b border-gray-100 overflow-hidden"
+        class="layout-main-navbar flex justify-between items-center h-12 layoutNavStyle border-b border-gray-100 overflow-hidden"
       >
         <layout-navbar />
       </div>
       <div
         v-if="layout.setting.showTags"
-        class="layout-main-tags h-10 leading-10 overflow-hidden shadow text-sm text-gray-600 px-3 position"
+        class="layout-main-tags h-10 leading-10 overflow-hidden text-sm layoutTagStyle text-gray-600 px16 position"
       >
         <layout-tags />
       </div>
@@ -92,5 +92,12 @@ export default defineComponent({
 .layout-sidebar-logo {
   background-color: #001529;
   color: #fff;
+}
+.layoutNavStyle {
+  border-bottom: 1px solid #e7e7e7;
+  box-shadow: 1px 0 2px #d7d7d7;
+}
+.layoutTagStyle {
+  border-bottom: 1px solid #e7e7e7;
 }
 </style>

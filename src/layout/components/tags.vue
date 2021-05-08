@@ -10,7 +10,7 @@
               layoutTagsItem[i] = el
             }
           "
-          class="px-2 py-1 mx-1 cursor-pointer tagStyle"
+          class="px-2 py-1 mx5 cursor-pointer tagStyle"
           :class="{ 'layout-tags-active': v.isActive }"
           @contextmenu.prevent="contextRightMenu(v, $event)"
         >
