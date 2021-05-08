@@ -4,19 +4,19 @@ interface IAnimate {
     draw(p: number): void
     duration: number
 }
-export function animate(param:IAnimate):void {
+export function animate(param: IAnimate): void {
     const { timing, draw, duration } = param
     const start = performance.now()
     requestAnimationFrame(function animate(time) {
         // timeFraction 从 0 增加到 1
         let timeFraction = (time - start) / duration
         if (timeFraction > 1) timeFraction = 1
-  
+
         // 计算当前动画状态，百分比，0-1
         const progress = timing(timeFraction)
-  
+
         draw(progress) // 绘制
-  
+
         if (timeFraction < 1) {
             requestAnimationFrame(animate)
         }
@@ -28,17 +28,17 @@ export function animate(param:IAnimate):void {
  * @param isShow 是否显示
  * @param duration 持续时间
  */
-export async function slide(el:Ref<HTMLDivElement | null>, isShow:boolean, duration = 200):Promise<void> {
-    if(!el.value) return
+export async function slide(el: Ref<HTMLDivElement | null>, isShow: boolean, duration = 200): Promise<void> {
+    if (!el.value) return
     const { position, zIndex } = getComputedStyle(el.value)
-    if(isShow) {
+    if (isShow) {
         el.value.style.position = 'absolute'
         el.value.style.zIndex = '-100000'
         el.value.style.height = 'auto'
     }
     await nextTick()
     const height = el.value.offsetHeight
-    if(isShow) {
+    if (isShow) {
         el.value.style.position = position
         el.value.style.zIndex = zIndex
         el.value.style.height = '0px'
@@ -46,11 +46,11 @@ export async function slide(el:Ref<HTMLDivElement | null>, isShow:boolean, durat
     animate({
         timing: timing.linear,
         draw: function(progress) {
-            if(!el.value) return
-            el.value.style.height = isShow 
+            if (!el.value) return
+            el.value.style.height = isShow
                 ? progress === 1
                     ? 'auto'
-                    : (`${progress * height}px`) 
+                    : (`${progress * height}px`)
                 : progress === 0
                     ? 'auto'
                     : (`${(1 - progress) * height}px`)

@@ -14,10 +14,11 @@ router.beforeEach(async (to, from) => {
   // 判断当前是否在登陆页面
   if (to.path.toLocaleLowerCase() === loginRoutePath.toLocaleLowerCase()) {
     done()
-    if (layout.token.ACCESS_TOKEN)
-      return typeof to.query.from === 'string'
+    if (layout.token.ACCESS_TOKEN) {
+ return typeof to.query.from === 'string'
         ? decodeURIComponent(decodeURIComponent(to.query.from))
         : defaultRoutePath
+}
     return
   }
   // // 判断是否登录
