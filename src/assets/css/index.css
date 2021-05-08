@@ -293,12 +293,7 @@ a {
 .h-3 {
   height: 0.75rem;
 }
-.-translate-y-2\/4 {
-  --tw-translate-y: -50%;
-}
-.-translate-x-2\/4 {
-  --tw-translate-x: -50%;
-}
+
 .transform {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
@@ -320,4 +315,22 @@ a {
 }
 .mt-5 {
   margin-top: 1.25rem;
+}
+.-translate-y-2\/4 {
+  --tw-translate-y: -50%;
+}
+.-translate-x-2\/4 {
+  --tw-translate-x: -50%;
+}
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+.relative {
+  position: relative;
 }

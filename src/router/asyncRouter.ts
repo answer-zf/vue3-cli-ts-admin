@@ -23,22 +23,11 @@ modules.keys().forEach(key => {
   }
 
   if (!componentsIngore.includes(moduleKey)) {
-    // // 文件地址
-    // console.log(moduleUrl)
-    // // 组件名
-    // console.log(moduleKey)
-
     // import 不能动态识别传入的字符串，需要通过指定编译路径，在根据字符串找到该组件
     components[moduleKey] = ((() => import(`@/${moduleUrl}`)) as unknown) as () => Promise<typeof import('*.vue')>
+    // components[moduleKey] = ((() => import(`../${moduleUrl}`)) as unknown) as () => Promise<typeof import('*.vue')>
   }
-
-  // // 文件地址
-  // console.log(moduleUrl)
-  // // 组件名
-  // console.log(moduleKey)
 })
-
-// console.log(components)
 
 const asyncRouter: Array<IMenubarList> = [
   {

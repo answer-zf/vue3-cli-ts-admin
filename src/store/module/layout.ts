@@ -67,9 +67,22 @@ const mutations = {
       state.tags.tagsList[index].isActive = true
       return
     }
+
+    if (!state.tags.tagsList.length) {
+      // 刷新后锁定首页
+      router.push('/')
+      state.tags.tagsList.push({
+        name: 'HomePage',
+        title: '首页',
+        path: '/Home/HomePage',
+        isActive: true,
+      })
+      return
+    }
+
     const tagsList: ITagsList = {
       name: cRouter.name as string,
-      title: cRouter.meta.title,
+      title: cRouter.meta.title as string,
       path: cRouter.path,
       isActive: true,
     }

@@ -4,17 +4,26 @@ import { store } from '@/store/index'
 import { IMenubarList } from '@/type/store/layout'
 
 const api = {
-  login: '/oauth/token',
+  // 接口
+  login: '/auth/oauth/token',
   getUser: '/getUser',
   getRouterList: '/getRoute',
 }
 
-// export interface loginParam {
-//   username: string
-//   password: string
+// 接口
+// export function login(param: any): Promise<AxiosResponse<any>> {
+//   return request({
+//     headers: {
+//       'Content-Type': 'multipart/form-data',
+//       Authorization: 'Basic YWRtaW46MTIzNDU2',
+//     },
+//     url: api.login,
+//     method: 'post',
+//     data: param,
+//   })
 // }
 
-export function login(param: any): Promise<AxiosResponse<any>> {
+export function login(param: any): any {
   return request({
     headers: {
       'Content-Type': 'multipart/form-data',

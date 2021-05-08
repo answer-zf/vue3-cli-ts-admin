@@ -1,5 +1,5 @@
 <template>
-  <i class="el-icon-s-tools text-2xl px-2 py-1 cursor-pointer rounded-l-md" @click="drawer = !drawer" />
+  <i class="el-icon-s-tools text-2xl px-2 py-1 cursor-pointer btnStyle" @click="drawer = !drawer" />
   <el-drawer v-model="drawer" title="主题设置" size="260px">
     <el-row :gutter="20">
       <el-col v-for="(val, index) in theme" :key="index" :span="8">
@@ -60,3 +60,11 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.btnStyle {
+  color: #454545;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+</style>

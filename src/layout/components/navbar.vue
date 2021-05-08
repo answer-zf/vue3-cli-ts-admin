@@ -7,19 +7,27 @@
     />
     <!-- 面包屑导航 -->
     <div class="px-4 hidden-xs-only">
-      <el-breadcrumb separator="/">
-        <transition-group name="breadcrumb">
+      <transition-group name="breadcrumb">
+        <el-breadcrumb separator="/" v-if="data.breadcrumbList[0].path !== '/'">
+          <transition-group name="breadcrumb">
+            <el-breadcrumb-item key="/" :to="{ path: '/' }">
+              主页
+            </el-breadcrumb-item>
+            <el-breadcrumb-item v-for="v in data.breadcrumbList" :key="v.path" :to="v.path">
+              {{ v.title }}
+            </el-breadcrumb-item>
+          </transition-group>
+        </el-breadcrumb>
+        <el-breadcrumb v-else>
           <el-breadcrumb-item key="/" :to="{ path: '/' }">
             主页
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-for="v in data.breadcrumbList" :key="v.path" :to="v.path">
-            {{ v.title }}
-          </el-breadcrumb-item>
-        </transition-group>
-      </el-breadcrumb>
+        </el-breadcrumb>
+      </transition-group>
     </div>
   </div>
   <div class="flex items-center flex-row-reverse px-4 min-width-32">
+    <layout-Theme />
     <!-- 用户下拉 -->
     <el-dropdown trigger="click">
       <span class="el-dropdown-link flex flex-center mx-2">
@@ -49,8 +57,6 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-
-    <!-- <Notice /> -->
   </div>
 </template>
 
@@ -58,7 +64,7 @@
 import { defineComponent, reactive, watch } from 'vue'
 import { useStore } from '@/store/index'
 import { useRoute, RouteLocationNormalizedLoaded } from 'vue-router'
-// import Notice from '@/layout/components/notice.vue'
+import LayoutTheme from '@/layout/components/theme.vue'
 
 interface IBreadcrumbList {
   path: string
@@ -71,7 +77,7 @@ const breadcrumb = (route: RouteLocationNormalizedLoaded) => {
     if (route.matched[0] && route.matched[0].name === 'Dashboard') return breadcrumbList
     route.matched.forEach(v => {
       const obj: IBreadcrumbList = {
-        title: v.meta.title,
+        title: v.meta.title as string,
         path: v.path,
       }
       breadcrumbList.push(obj)
@@ -90,9 +96,9 @@ const breadcrumb = (route: RouteLocationNormalizedLoaded) => {
 
 export default defineComponent({
   name: 'LayoutNavbar',
-  // components: {
-  //   Notice,
-  // },
+  components: {
+    LayoutTheme,
+  },
   setup() {
     const store = useStore()
     const route = useRoute()

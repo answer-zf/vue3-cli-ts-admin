@@ -10,14 +10,14 @@
               layoutTagsItem[i] = el
             }
           "
-          class="border border-gray-200 px-2 py-1 mx-1 cursor-pointer rounded-md"
+          class="px-2 py-1 mx-1 cursor-pointer tagStyle"
           :class="{ 'layout-tags-active': v.isActive }"
           @contextmenu.prevent="contextRightMenu(v, $event)"
         >
-          <i v-if="v.isActive" class="rounded-full inline-block w-2 h-2 bg-white -ml-1 mr-1" />
+          <!-- <i v-if="v.isActive" class="rounded-full inline-block w-2 h-2 bg-white -ml-1 mr-1" /> -->
           <router-link :to="v.path">{{ v.title }}</router-link>
           <i
-            v-if="tagsList.length > 1"
+            v-if="v.name !== 'HomePage'"
             class="el-icon-close text-xs hover:bg-gray-300 hover:text-white rounded-full leading-3 p-0.5 ml-1 -mr-1"
             @click="removeTagNav(v)"
           />
@@ -150,3 +150,12 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.tagStyle {
+  box-shadow: 1px 1px 1px #cecece;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  border-radius: 1px;
+}
+</style>

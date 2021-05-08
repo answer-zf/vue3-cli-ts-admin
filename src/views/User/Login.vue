@@ -20,7 +20,7 @@
       </el-form-item>
       <el-form-item>
         <p class="leading-5">
-          账号: admin 密码: 111111
+          账号: admin 密码: 123456
         </p>
       </el-form-item>
     </el-form>

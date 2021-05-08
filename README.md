@@ -26,6 +26,56 @@
       - 可以用 `src\api\mockData\routeback.ts` 做参考
    2. 根据 配置项的路径添加相应的文件夹和文件 动态路由根据 `@/views` 目录下的 文件夹和文件 生成动态路由
 
-ps. 未做动态处理，使用静态数据可以清除框架结构，本项目只是项目框架基地，自定义改造的部分还需要自行处理
+ps. 本项目只是项目框架基底，使用静态数据，自定义改造的部分还需要自行处理
 
-借鉴： `https://github.com/hsiangleev/element-plus-admin`
+***
+
+2021 05 07 更新
+
+## 添加测试环境和开发环境
+
+### 测试环境
+
+> 运行：`npm run test`
+
+- 在测试环境中，使用 mock 做接口请求的模拟
+- mock 中的接口与实际开发的接口相同，可无缝衔接实际的接口
+- 由于 项目接口约定用 formData 进行传参，在mock中的登录采用的formData参数进行校验。
+
+### 开发环境
+
+> 运行：`npm run dev`
+
+- 在已有后端接口的前提下运行即可，代码不需要修改。
+
+### 生产打包
+
+> 运行：`npm run build`
+
+## 尝鲜功能
+
+- 采用 react 中的 context useReducer 的思想进行状态管理
+
+- 在 vue3 中 用 hook + provide 、inject 实现
+
+- 核心代码：
+
+  - `@/context/`
+  - `@/App.vue`
+  - `@/views/Home/HomePage.vue`
+
+## 数据
+
+- mock 数据
+
+  - `@/mock/data/`
+
+- 静态数据
+  
+  - context 尝鲜测试数据：`@/api/bookData`
+  - router: `@/api/mockData`
+
+借鉴：
+
+- `https://github.com/hsiangleev/element-plus-admin`
+- `https://github.com/sl1673495/vue-bookshelf`

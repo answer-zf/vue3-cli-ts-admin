@@ -44,9 +44,6 @@
         <layout-content />
       </div>
     </div>
-    <div class="layout-sidebar-theme fixed right-0 top-64 z-10">
-      <layout-Theme />
-    </div>
   </div>
 </template>
 
@@ -56,7 +53,6 @@ import LayoutContent from '@/layout/components/content.vue'
 import LayoutMenubar from '@/layout/components/menubar.vue'
 import LayoutNavbar from '@/layout/components/navbar.vue'
 import LayoutTags from '@/layout/components/tags.vue'
-import LayoutTheme from '@/layout/components/theme.vue'
 import { useStore } from '@/store/index'
 import { throttle } from '@/utils/index'
 
@@ -67,7 +63,6 @@ export default defineComponent({
     LayoutMenubar,
     LayoutNavbar,
     LayoutTags,
-    LayoutTheme,
   },
   setup() {
     const store = useStore()

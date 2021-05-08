@@ -6,7 +6,7 @@ const components: IObject<() => Promise<typeof import('*.vue')>> = {
   Redirect: ((() => import('@/layout/redirect.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
   LayoutBlank: ((() => import('@/layout/blank.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
   404: ((() => import('@/views/ErrorPage/404.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
-  Workplace: ((() => import('@/views/Dashboard/Workplace.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
+  HomePage: ((() => import('@/views/Home/HomePage.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
 
   Login: ((() => import('@/views/User/Login.vue')) as unknown) as () => Promise<typeof import('*.vue')>,
 }
@@ -14,17 +14,17 @@ const components: IObject<() => Promise<typeof import('*.vue')>> = {
 // 静态路由页面
 export const allowRouter: Array<IMenubarList> = [
   {
-    name: 'Dashboard',
+    name: 'Home',
     path: '/',
     component: components['Layout'],
-    redirect: '/Dashboard/Workplace',
-    meta: { title: '仪表盘', icon: 'el-icon-eleme' },
+    redirect: '/Home/HomePage',
+    meta: { title: '首页', icon: 'el-icon-s-home' },
     children: [
       {
-        name: 'Workplace',
-        path: '/Dashboard/Workplace',
-        component: components['Workplace'],
-        meta: { title: '工作台', icon: 'el-icon-s-tools' },
+        name: 'HomePage',
+        path: '/Home/HomePage',
+        component: components['HomePage'],
+        meta: { title: '首页', icon: 'el-icon-s-home' },
       },
     ],
   },
