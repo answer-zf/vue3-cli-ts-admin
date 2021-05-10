@@ -22,6 +22,11 @@
         npm run build
       </el-card>
     </div>
+
+    <div class="test">
+      <p>dddd</p>
+      <p>3333</p>
+    </div>
   </el-card>
 </template>
 
@@ -74,5 +79,10 @@ export default defineComponent({
   margin-top: 14px;
   width: 100%;
   border-top: 1px dashed $black-lightest;
+}
+
+.test {
+  display: flex;
+  transform: translateX(200px);
 }
 </style>

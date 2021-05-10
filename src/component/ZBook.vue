@@ -47,7 +47,7 @@ export default defineComponent({
   height: 180px;
   border-radius: 2px;
   overflow: hidden;
-  opacity: 0.6;
+  display: flex;
 }
 .zArticle {
   height: 180px;
