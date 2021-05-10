@@ -79,7 +79,15 @@ ps. 本项目只是项目框架基底，使用静态数据，自定义改造的�
   - context 尝鲜测试数据：`@/api/bookData`
   - router: `@/api/mockData`
 
-借鉴：
+## 补充
+
+### 组件相关注意事项
+
+- 由于项目中，路由所直接关联的组件（eg. `/Home/HomePage => @/views/Home/HomePage.vue`）
+- 在 `@/layout/content.vue` 中使用 `keep-alive` 组件做动态组件的缓存.
+- 在这些组件中 template 下必须有且仅有一个标签。
+
+## 借鉴
 
 - `https://github.com/hsiangleev/element-plus-admin`
 - `https://github.com/sl1673495/vue-bookshelf`

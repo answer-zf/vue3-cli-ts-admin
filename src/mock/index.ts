@@ -1,5 +1,5 @@
 import { mock } from 'mockjs'
-import { login, setToken } from '@/mock/response'
+import { login, setToken, checkToken, books } from '@/mock/response'
 
 interface IReq {
   body: any
@@ -19,5 +19,22 @@ mock('/auth/oauth/token', 'post', (req: IReq) => {
     code: 401,
     msg: '用户名或密码错误',
     access_token: '', // eslint-disable-line
+  })
+})
+
+mock('/auth/oauth/books', 'get', (req: IReq) => {
+  const { token } = JSON.parse(req.body)
+  const hasToken = checkToken(token)
+  if (!hasToken) {
+    return mock({
+      code: 401,
+      msg: '身份认证失败',
+      data: '',
+    })
+  }
+  return mock({
+    code: 200,
+    msg: '',
+    data: books,
   })
 })

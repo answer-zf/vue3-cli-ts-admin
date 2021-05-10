@@ -1,9 +1,15 @@
 .px16 {
   padding: 0 16px;
 }
-.p20 {
-  padding: 20px;
+.m20 {
+  margin: 20px;
 }
 .mx5 {
   margin: 0 5px;
+}
+.pt10 {
+  padding-top: 10px;
+}
+.outsideCard.el-card.is-always-shadow {
+  box-shadow: none;
 }

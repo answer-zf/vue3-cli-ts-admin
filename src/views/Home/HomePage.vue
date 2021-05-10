@@ -1,68 +1,54 @@
 <template>
-  <div class="p20">
-    <el-card class="outsideCard">
-      <el-alert type="success" :closable="false" style="margin:15px 0 10px;">
-        <template #title>
-          <div class="title">
-            <i class="el-icon-s-opportunity"></i>
-            <span>
-              使用 cli 脚手架，搭建的 vue3 框架。
-            </span>
-          </div>
-        </template>
-      </el-alert>
+  <el-card class="outsideCard m20">
+    <z-alert :options="alertOptions" />
+    <div class="zBlock">
+      <p class="zHead">运行 开发环境 - <span>本地mock</span></p>
+      <el-card :body-style="{ padding: '15px' }" class="zContent">
+        npm start <span style="color:#409EFF">/</span> npm run dev-local
+      </el-card>
+    </div>
+    <div class="zLine"></div>
+    <div class="zBlock">
+      <p class="zHead">运行 开发环境 - <span>连接后端接口</span></p>
+      <el-card :body-style="{ padding: '15px' }" class="zContent">
+        npm run dev-remote
+      </el-card>
+    </div>
+    <div class="zLine"></div>
 
-      <div class="zBlock">
-        <p class="zHead">运行 开发环境 - <span>本地mock</span></p>
-        <el-card :body-style="{ padding: '15px' }" class="zContent">
-          npm start <span style="color:#409EFF">/</span> npm run dev-local
-        </el-card>
-      </div>
-      <div class="zLine"></div>
-      <div class="zBlock">
-        <p class="zHead">运行 开发环境 - <span>连接后端接口</span></p>
-        <el-card :body-style="{ padding: '15px' }" class="zContent">
-          npm run dev-remote
-        </el-card>
-      </div>
-      <div class="zLine"></div>
-
-      <div class="zBlock">
-        <p class="zHead">运行 生产环境 - <span>项目打包</span></p>
-        <el-card :body-style="{ padding: '15px' }" class="zContent">
-          npm run build
-        </el-card>
-      </div>
-    </el-card>
-  </div>
+    <div class="zBlock">
+      <p class="zHead">运行 生产环境 - <span>项目打包</span></p>
+      <el-card :body-style="{ padding: '15px' }" class="zContent">
+        npm run build
+      </el-card>
+    </div>
+  </el-card>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
+
+import { AlertOptions } from '@/type/component/zalert'
+import ZAlert from '@/component/ZAlert.vue'
 
 export default defineComponent({
   name: 'HomePage',
+  components: {
+    ZAlert,
+  },
+  setup() {
+    const alertOptions = reactive<AlertOptions>({
+      zicon: 'el-icon-s-opportunity',
+      zspan: '使用 cli 脚手架，搭建的 vue3 框架。',
+    })
+
+    return { alertOptions }
+  },
 })
 </script>
 
 <style lang="scss" scoped>
 @import '../../assets/scss/common.scss';
-
-.title {
-  font-size: 14px;
-  padding: 3px 0;
-  font-weight: 600;
-  i {
-    font-size: 18px;
-  }
-  span {
-    color: $black-normal;
-  }
-}
-
-::v-deep(.outsideCard.el-card.is-always-shadow) {
-  box-shadow: none;
-}
 
 .zBlock {
   margin-top: 10px;
@@ -75,6 +61,7 @@ export default defineComponent({
 
     span {
       color: $blue;
+      opacity: 0.4;
     }
   }
   .zContent {

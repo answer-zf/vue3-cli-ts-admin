@@ -1,5 +1,5 @@
 // type
-import { Book, Books } from '@/type/views/home'
+import { Book, Books } from '@/type/views/cookie'
 import { computed, inject, provide, ref, Ref } from 'vue'
 
 // context 类型
