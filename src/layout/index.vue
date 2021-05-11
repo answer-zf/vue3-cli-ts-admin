@@ -15,7 +15,7 @@
       }"
     >
       <!-- 侧边栏 logo 修改 -->
-      <div class="layout-sidebar-logo flex h-12 relative flex-center shadow-lg">
+      <div class="layout-sidebar-logo flex h-12 relative justify-center shadow-lg items-center font-bold">
         {{
           layout.menubar.status === 0 || layout.menubar.status === 2
             ? 'IM后台管理'
@@ -93,10 +93,12 @@ export default defineComponent({
   background-color: #001529;
   color: #fff;
 }
+
 .layoutNavStyle {
   border-bottom: 1px solid #e7e7e7;
   box-shadow: 1px 0 2px #d7d7d7;
 }
+
 .layoutTagStyle {
   border-bottom: 1px solid #e7e7e7;
 }

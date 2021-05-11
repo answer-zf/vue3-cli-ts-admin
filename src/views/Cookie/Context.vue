@@ -3,7 +3,7 @@
     <z-alert :options="alertOptions" />
     <el-tabs class="contextTabs pt-3">
       <el-tab-pane label="未阅图书">
-        <div v-if="finishedBooks.length !== 0">
+        <div v-if="unReadBooks.length !== 0">
           <div class="w-8/12 mx-auto">
             <z-book :options="item" v-for="item in unReadBooks" :key="item.id" />
           </div>
