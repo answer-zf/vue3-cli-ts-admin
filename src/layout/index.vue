@@ -36,7 +36,7 @@
       </div>
       <div
         v-if="layout.setting.showTags"
-        class="layout-main-tags h-10 leading-10 overflow-hidden text-sm layoutTagStyle text-gray-600 px16 position"
+        class="layout-main-tags h-10 leading-10 overflow-hidden text-sm layoutTagStyle text-gray-600 px-4 position"
       >
         <layout-tags />
       </div>

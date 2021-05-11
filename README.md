@@ -28,6 +28,52 @@
 
 ps. 本项目只是项目框架基底，使用静态数据，自定义改造的部分还需要自行处理
 
+## 补充
+
+### 组件相关注意事项
+
+- 由于项目中，路由所直接关联的组件（eg. `/Home/HomePage => @/views/Home/HomePage.vue`）
+- 在 `@/layout/content.vue` 中使用 `keep-alive` 组件做动态组件的缓存.
+- 在这些组件中 template 下必须有且仅有一个标签。
+
+## 借鉴
+
+- `https://github.com/hsiangleev/element-plus-admin`
+- `https://github.com/sl1673495/vue-bookshelf`
+
+***
+
+2021 05 11 更新
+
+## 添加 css 框架以及校验
+
+### tailwind 框架
+
+1. 使用 tailwind 框架 ，并配合 postcss 做 css 前缀的补充
+
+2. 安装 tailwind postcss autoprefixer
+
+   - `npm install tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 -D`
+   - 由于使用最新的版本，不能对 postcss 8 兼容，固使用指定的兼容版本。
+
+3. 配置 对 tailwind 做优化配置: `tailwind.config.js`
+4. vue 中内置了 对 postcss autoprefixer 的配置
+
+### stylelint 校验
+
+- 由于 tailwind 使用的 at-rule，原生 css 校验不识别，固使用该工具做css的统一格式化和校验。
+- `npm i stylelint stylelint-config-standard -D`
+- stylelint 配置(忽略 tailwind 中的 at-rule...): `.stylelintrc.js`
+- 关闭 vscode 的 css less scss 的验证
+
+```javascript
+{
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false
+}
+```
+
 ***
 
 2021 05 07 更新
@@ -78,16 +124,3 @@ ps. 本项目只是项目框架基底，使用静态数据，自定义改造的�
   
   - context 尝鲜测试数据：`@/api/bookData`
   - router: `@/api/mockData`
-
-## 补充
-
-### 组件相关注意事项
-
-- 由于项目中，路由所直接关联的组件（eg. `/Home/HomePage => @/views/Home/HomePage.vue`）
-- 在 `@/layout/content.vue` 中使用 `keep-alive` 组件做动态组件的缓存.
-- 在这些组件中 template 下必须有且仅有一个标签。
-
-## 借鉴
-
-- `https://github.com/hsiangleev/element-plus-admin`
-- `https://github.com/sl1673495/vue-bookshelf`

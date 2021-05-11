@@ -1,9 +1,9 @@
 <template>
-  <el-alert type="success" :closable="false" style="margin:15px 0 10px;">
+  <el-alert type="success" :closable="false" class="-ml-2">
     <template #title>
-      <div class="title">
-        <i :class="options.zicon"></i>
-        <span style="padding-left:6px;">
+      <div class="font-bold px-1 flex items-center">
+        <i :class="options.zicon" class="text-lg"></i>
+        <span class="pl-1 text-gray-500 text-sm">
           {{ options.zspan }}
         </span>
       </div>
@@ -28,17 +28,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/common.scss';
-
-.title {
-  font-size: 14px;
-  padding: 3px 0;
-  font-weight: 600;
-  i {
-    font-size: 18px;
-  }
-  span {
-    color: $black-normal;
-  }
+::v-deep(.el-alert__content) {
+  padding: 0;
 }
 </style>

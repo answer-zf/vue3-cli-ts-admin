@@ -6,8 +6,8 @@ import { store } from '@/store/index'
 import '@/permission'
 
 // 全局样式
+import '@/assets/css/tailwind.css'
 import '@/assets/css/index.css'
-import '@/assets/css/zindex.css'
 
 // 全局导入 element-plus
 import ElementPlus from 'element-plus'

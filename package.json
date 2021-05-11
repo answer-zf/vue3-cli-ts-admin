@@ -14,8 +14,6 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.30",
-    "@types/mockjs": "^1.0.3",
-    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
@@ -23,6 +21,8 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.2",
+    "@types/mockjs": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -34,16 +34,20 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/eslint-config-typescript": "^5.0.2",
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^9.8.6",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0-0",
-    "postcss": "^8.2.14",
+    "mockjs": "^1.1.0",
+    "postcss": "^7.0.35",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
     "typescript": "~3.9.3"
   }
 }

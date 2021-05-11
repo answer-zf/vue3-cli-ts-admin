@@ -1,13 +1,27 @@
 <template>
-  <el-card class="outsideCard m20">
+  <el-card class="outsideCard m-5">
     <z-alert :options="alertOptions" />
-    <el-tabs class="contextTabs pt10">
+    <el-tabs class="contextTabs pt-3">
       <el-tab-pane label="未阅图书">
-        <div style="width:700px;margin:auto">
-          <z-book :options="item" v-for="item in unReadBooks" :key="item.id" />
+        <div v-if="finishedBooks.length !== 0">
+          <div class="w-8/12 mx-auto">
+            <z-book :options="item" v-for="item in unReadBooks" :key="item.id" />
+          </div>
+        </div>
+        <div v-else>
+          <el-empty description="图书已全阅读" />
         </div>
       </el-tab-pane>
-      <el-tab-pane label="已阅图书">已阅图书</el-tab-pane>
+      <el-tab-pane label="已阅图书">
+        <div v-if="finishedBooks.length !== 0">
+          <div class="w-8/12 mx-auto">
+            <z-book :options="item" v-for="item in finishedBooks" :key="item.id" />
+          </div>
+        </div>
+        <div v-else>
+          <el-empty description="没有找到已阅图书" />
+        </div>
+      </el-tab-pane>
     </el-tabs>
     <p>{{ unReadBooks.length }}</p>
     <p>{{ loading }}</p>
@@ -47,14 +61,15 @@ export default defineComponent({
       zspan: '使用 Context useReducer 理念做的状态管理实验',
     })
 
-    const { setBooks, unReadBooks } = useBookListInject()
+    const { setBooks, unReadBooks, finishedBooks } = useBookListInject()
+    console.log(finishedBooks)
 
     const loading = useAsync(async () => {
       const { data } = await books()
       setBooks(data.data)
     })
 
-    return { alertOptions, unReadBooks, loading }
+    return { alertOptions, unReadBooks, loading, finishedBooks }
   },
 })
 </script>
@@ -64,6 +79,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
 }
+
 ::v-deep(.contextTabs .el-tabs__nav-wrap::after) {
   background-color: transparent;
 }

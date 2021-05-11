@@ -47,7 +47,15 @@ export const useBookListProvide = () => {
   // 图书是否已阅读
   const hasReadBook = (book: Book) => finishedBooks.value.includes(book)
 
-  provide(BookSymbol, { books, setBooks, addBookToFinished, removeBookToFinished, unReadBooks, hasReadBook })
+  provide(BookSymbol, {
+    books,
+    unReadBooks,
+    finishedBooks,
+    setBooks,
+    hasReadBook,
+    addBookToFinished,
+    removeBookToFinished,
+  })
 }
 
 export const useBookListInject = () => {
