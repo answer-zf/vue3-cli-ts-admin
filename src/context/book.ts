@@ -9,8 +9,8 @@ type BookContext = {
   finishedBooks: Ref<Books>
   setBooks: (value: Books) => void
   hasReadBook: (value: Books) => void
-  addBookToFinished: (book: Book) => void
-  removeBookToFinished: (book: Book) => void
+  addBookToFinished: (urId: string) => void
+  removeBookToFinished: (urId: string) => void
 }
 
 // 唯一键
@@ -30,15 +30,16 @@ export const useBookListProvide = () => {
   })
 
   // 未阅图书添加至已阅
-  const addBookToFinished = (book: Book) => {
-    if (!finishedBooks.value.find(({ id }) => id === book.id)) {
+  const addBookToFinished = (urId: string) => {
+    if (!finishedBooks.value.find(({ id }) => id === urId)) {
+      const book = books.value.filter(item => item.id === urId)[0]
       finishedBooks.value.push(book)
     }
   }
 
   // 将已阅图书做移除
-  const removeBookToFinished = (book: Book) => {
-    const removeBookIndex = finishedBooks.value.findIndex(({ id }) => id === book.id)
+  const removeBookToFinished = (urId: string) => {
+    const removeBookIndex = finishedBooks.value.findIndex(({ id }) => id === urId)
     if (removeBookIndex !== -1) {
       finishedBooks.value.splice(removeBookIndex, 1)
     }

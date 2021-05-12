@@ -4,8 +4,14 @@
     <el-tabs class="contextTabs pt-3">
       <el-tab-pane label="未阅图书">
         <div v-if="unReadBooks.length !== 0">
-          <div class="w-8/12 mx-auto">
-            <z-book :options="item" v-for="item in unReadBooks" :key="item.id" />
+          <div class="w-8/12 mx-auto" v-loading="loading">
+            <z-book
+              :options="item"
+              v-for="item in unReadBooks"
+              :key="item.id"
+              status="add"
+              @handleClick="handleClick"
+            />
           </div>
         </div>
         <div v-else>
@@ -15,7 +21,13 @@
       <el-tab-pane label="已阅图书">
         <div v-if="finishedBooks.length !== 0">
           <div class="w-8/12 mx-auto">
-            <z-book :options="item" v-for="item in finishedBooks" :key="item.id" />
+            <z-book
+              :options="item"
+              v-for="item in finishedBooks"
+              :key="item.id"
+              status="remove"
+              @handleClick="handleClick"
+            />
           </div>
         </div>
         <div v-else>
@@ -24,7 +36,6 @@
       </el-tab-pane>
     </el-tabs>
     <p>{{ unReadBooks.length }}</p>
-    <p>{{ loading }}</p>
   </el-card>
 </template>
 
@@ -35,6 +46,7 @@
 // @/context/
 // @/type/views/cookie/index.ts
 // @/mock/data/books
+// @/component/ZBook.vue
 
 // （修改）
 // @/App.vue
@@ -43,14 +55,19 @@
 
 import { defineComponent, reactive } from 'vue'
 
+// 提示框组件
 import { AlertOptions } from '@/type/component/zalert'
 import ZAlert from '@/component/ZAlert.vue'
 
-import { useBookListInject } from '@/context'
-
-import { books } from '@/api/views/cookie/context'
-import { useAsync } from '@/hooks'
+// api
+import { getBooks } from '@/api/views/cookie/context'
+// 单项 图书信心组件
 import ZBook from '@/component/ZBook.vue'
+
+// 状态管理 hook
+import { useBookListInject } from '@/context'
+// 异步封装 hook
+import { useAsync } from '@/hooks'
 
 export default defineComponent({
   components: { ZAlert, ZBook },
@@ -61,15 +78,32 @@ export default defineComponent({
       zspan: '使用 Context useReducer 理念做的状态管理实验',
     })
 
-    const { setBooks, unReadBooks, finishedBooks } = useBookListInject()
+    const { setBooks, unReadBooks, finishedBooks, addBookToFinished, removeBookToFinished } = useBookListInject()
     console.log(finishedBooks)
 
+    // 初始化数据
     const loading = useAsync(async () => {
-      const { data } = await books()
+      const { data } = await getBooks()
       setBooks(data.data)
     })
 
-    return { alertOptions, unReadBooks, loading, finishedBooks }
+    // 点击按钮触发事件
+    const handleClick = (id: string, status: string, event: MSInputMethodContext) => {
+      // * 解决 按钮点击后状态不消失的bug
+      let target = event.target as HTMLElement
+      if (target.nodeName == 'SPAN') {
+        target = event.target.parentNode as HTMLElement
+      }
+      target.blur()
+
+      if (status && status === 'add') {
+        addBookToFinished(id)
+      } else if (status && status === 'remove') {
+        removeBookToFinished(id)
+      }
+    }
+
+    return { alertOptions, unReadBooks, loading, finishedBooks, handleClick }
   },
 })
 </script>

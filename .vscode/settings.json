@@ -1,0 +1,13 @@
+{
+  // 关闭重复的 vue template 内的校验
+  // "vetur.validation.template": false,
+  // 在 vue 的 template 中可使用 ts提示
+  "vetur.experimental.templateInterpolationService": true,
+  // ? 对上面的功能的校验，选择是否关闭。
+  // ? "vetur.validation.interpolation": false,
+  // tailwind css 中的 atRules 不被识别
+  // 忽略 scss 中的 atRules 验证
+  "scss.lint.unknownAtRules": "ignore",
+  // 直接关闭 css 验证，使用 stylelint 全权代理
+  "css.validate": false
+}

@@ -6,7 +6,7 @@ const api = {
   books: '/auth/oauth/books',
 }
 
-export function books(): any {
+export function getBooks(): any {
   return request({
     headers: {
       'Content-Type': 'multipart/form-data',

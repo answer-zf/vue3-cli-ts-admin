@@ -1,5 +1,5 @@
 <template>
-  <el-container class="p-1 border border-gray-200 rounded-sm mt-1">
+  <el-container class="p-1 border border-gray-200 rounded-sm mt-1 relative">
     <el-aside class="h-44 rounded-sm flex overflow-hidden zAside">
       <el-image src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" fit="cover"></el-image>
     </el-aside>
@@ -8,24 +8,43 @@
       <p class="text-center text-xs mt-2 mb-2 text-gray-400">{{ options.author }}</p>
       <div class="text-sm text-gray-500 zText">{{ options.synopsis }}</div>
     </el-main>
+    <div class="absolute -right-4 top-2/4 transform -translate-y-2/4">
+      <el-button circle size="small" @click="clickHandle(options.id, status, $event)">{{
+        status === 'add' ? '阅' : '删'
+      }}</el-button>
+    </div>
   </el-container>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { Book } from '@/type/views/cookie'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
+  emits: ['handleClick'],
   props: {
     options: {
-      type: Object,
+      type: Object as PropType<Book>,
       require: true,
       default: function() {
         return {}
       },
     },
+    status: {
+      type: String,
+      require: true,
+      default: function() {
+        return ''
+      },
+    },
   },
-  setup() {
-    return {}
+  setup(props, { emit }) {
+    const clickHandle = (id: string, status: string, event: any) => {
+      emit('handleClick', id, status, event)
+    }
+    return {
+      clickHandle,
+    }
   },
 })
 </script>
@@ -42,7 +61,6 @@ export default defineComponent({
 
   .zText {
     overflow: hidden;
-    text-overflow: ellipsis;
     display: -webkit-box;
     line-clamp: 5;
     -webkit-line-clamp: 5;
